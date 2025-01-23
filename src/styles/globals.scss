@@ -1,0 +1,391 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-medium mb-2;
+}
+
+h1 {
+  @apply text-8xl;
+}
+
+h2 {
+  @apply text-7xl;
+}
+
+h3 {
+  @apply text-6xl;
+}
+
+h4 {
+  @apply text-5xl;
+}
+
+h5 {
+  @apply text-4xl;
+}
+
+html,
+body {
+  padding: 0;
+  background-color: #0A0B12;
+  min-height: 100vh;
+  margin: 0;
+  font-family: "Manrope", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+.tooltip {
+  max-width: 400px;
+  box-shadow: 0 4px 13px 0 #2A365C inset;
+  background: linear-gradient(180deg, #2C3B67 9.92%, #060B1C 100%);
+  border: 1px solid #27345C;
+  padding: 1.5rem;
+  color: #E2EAFF;
+}
+
+.carousel-container {
+  position: relative;
+  overflow: hidden; /* Ensures shadows don't extend outside the container */
+}
+
+.carousel-shadow {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px; /* Adjust the width of the shadow */
+  pointer-events: none; /* Prevents the shadow from blocking click events */
+  z-index: 10;
+}
+
+.carousel-shadow.left {
+  left: 0;
+  background: linear-gradient(to right, #0A0B12, transparent);
+}
+
+.carousel-shadow.right {
+  right: 0;
+  background: linear-gradient(to left, #0A0B12, transparent);
+}
+
+.michi-wallet-list-item {
+  border-top: 1.457px solid rgba(72, 55, 67, 0.70);
+  border-bottom: 1.457px solid rgba(72, 55, 67, 0.70);
+}
+
+.icon-custom{
+  border: 1.1px solid rgba(254, 207, 196, 0.40);
+}
+
+.selected-michi-wallet {
+  background: linear-gradient(225deg, rgba(10, 11, 18, 0.60) 16.89%, rgba(58, 40, 41, 0.60) 79.25%);
+  box-shadow: 0px 5.827px 18.939px 0px rgba(39, 28, 32, 0.77) inset;
+}
+
+.styled-button {
+  @apply text-white border-1 border-solid border-custom-dark-gray shadow-custom bg-custom-gradient rounded-md px-10;
+}
+
+.modal {
+  @apply border-2 border-solid border-custom-gray shadow-custom overflow-hidden bg-custom-gradient p-4;
+}
+
+.michi-button {
+  border-radius: 8.803px;
+  border: 1.1px solid #151B1B;
+  background: #E18971;
+  box-shadow: 0px 3.651px 11.866px 0px #583329 inset;
+}
+
+.failed-logo {
+  position: absolute;
+  left: -100px;
+  top: -120px;
+  transform: rotate(30deg);
+  @media (max-width: 674px) {
+    width: 200px;
+  }
+}
+
+.points-earned-logo {
+  position: absolute;
+  left: -100px;
+  bottom: 0;
+  transform: rotate(30deg);
+  @media (max-width: 674px) {
+    width: 200px;
+  }
+}
+
+.stats-logo {
+  position: absolute;
+  width: 80px;
+  right: -20px;
+  top: 15%;
+  transform: rotate(-45deg);
+  @media (max-width: 674px) {
+    width: 50px;
+  }
+}
+
+.michi-transparent-button {
+  @apply bg-transparent border-1 border-solid border-custom-gray;
+}
+
+.logo-container {
+  @apply border-2 border-solid border-custom-gray shadow-custom w-12 h-12 rounded-full mr-2 flex justify-center items-center;
+}
+
+.pichi-card {
+  border: 1.457px solid rgba(72, 55, 67, 0.70);
+  @apply bg-custom-gradient-alt rounded-xl shadow-custom-alt;
+  //@apply text-white border-2 border-solid border-custom-gray shadow-custom bg-custom-gradient rounded-2xl;
+}
+
+.tokens-claim {
+  border-radius: 1019px;
+  background: radial-gradient(37.02% 47.84% at 50% 50%, rgba(255, 168, 90, 0.10) 0%, rgba(255, 168, 90, 0.00) 100%);
+
+  .img-container {
+    background: url("/assets/misc/shimmer.png") no-repeat;
+    background-position: center;
+  }
+}
+
+.market-card{
+  border-radius: 12px;
+  border: 1.1px solid rgba(72, 55, 67, 0.70);
+  background: linear-gradient(180deg, #0A0B12 9.92%, #0A0B12 100%);
+  box-shadow: 0px 4.401px 14.304px 0px rgba(31, 24, 24, 0.77) inset;
+}
+
+.pichi-button{
+  border-radius: 8.803px;
+  border: 1.1px solid #151B1B;
+  background: #E18971;
+  box-shadow: 0px 3.651px 11.866px 0px #583329 inset;
+}
+
+.pichi-button-empty{
+  border-radius: 8.803px;
+  border: 1.1px solid rgba(72, 55, 67, 0.70);
+  background: linear-gradient(180deg, #0A0B12 9.92%, #0A0B12 100%);
+  box-shadow: 0px 4.401px 14.304px 0px rgba(39, 28, 32, 0.77) inset;
+}
+
+.placeholder {
+  @apply flex flex-col p-10 md:px-16 items-center justify-center bg-custom-gradient border-2 border-solid border-custom-gray shadow-custom rounded-md max-w-xl text-center m-auto;
+}
+
+.pichi-card-empty {
+  @apply bg-custom-gradient border-2 border-solid border-custom-gray shadow-custom rounded-lg;
+}
+
+
+.gradient-text {
+  background: linear-gradient(90deg, #A9C0EF 27.7%, #D8E5FF 76.4%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.snippet-icon {
+  @apply inline-block mr-2 text-xl -mb-1;
+}
+
+.select, .select:hover, .select:focus, .select:active, .select:disabled, .select:disabled:hover, .select:disabled:focus, .select:disabled:active {
+  button {
+    border-radius: 8px;
+    border: 1px solid rgba(72, 55, 67, 0.70);
+    background: #0A0B12;
+    color: theme('colors.custom-blue-300') !important;
+
+    span {
+      color: white !important;
+    }
+  }
+}
+
+.input, .input:hover, .input:focus, .input:active, .input:disabled, .input:disabled:hover, .input:disabled:focus, .input:disabled:active {
+  > div {
+    border-radius: 8px !important;
+    border: 1px solid rgba(72, 55, 67, 0.70) !important;
+    background: #0A0B12 !important;
+    color: theme('colors.custom-blue-300') !important;
+    div{
+      border-radius: 8px !important;
+    }
+
+    input {
+      color: white !important;
+    }
+  }
+}
+
+label {
+  @apply text-primary;
+}
+
+.full-page-placeholder {
+  @apply col-span-6 lg:col-span-4 2xl:col-span-5 p-4 height-full flex justify-center items-center
+}
+
+.bg-content1 {
+  @apply text-white border-2 border-solid border-custom-gray shadow-custom bg-custom-gradient rounded-2xl;
+  color: white;
+}
+
+.navbar {
+  @apply bg-transparent border-b-1 border-solid border-white border-opacity-10 py-2;
+}
+
+@media (min-width: 1024px) {
+  .height-full {
+    height: calc(100vh - 66px);
+  }
+}
+
+
+.leaderboard-rank {
+  @apply my-4 rounded-lg overflow-hidden;
+}
+
+.leaderboard-rank-container {
+  @apply bg-custom-rank-gradient rounded-lg flex flex-col  justify-center border-2 border-solid border-custom-gray;
+}
+
+.leaderboard-rank-value {
+  @apply font-medium bg-leaderboard-title-gradient bg-clip-text text-transparent;
+}
+
+
+.leaderboard-stats-container {
+  @apply market-card max-w-xl mx-0 m-auto mt-5;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.5); /* Change this color as needed */
+  border-radius: 6px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+.leaderboard-stats-header-container {
+  @apply flex flex-col sm:flex-row justify-between items-center p-4 sm:p-8;
+}
+
+.leaderboard-stats-title {
+  @apply text-medium sm:text-lg mb-2 sm:mb-0;
+}
+
+.leaderboard-stats-header {
+  @apply pichi-button-empty text-white-80 text-xs sm:text-sm border-1 border-solid border-custom-border-gray bg-transparent rounded-none px-4 sm:px-8 py-2;
+}
+
+.leaderboard-stats-column {
+  @apply py-2 sm:py-4 px-4 sm:px-6 text-white text-left font-medium text-xs sm:text-sm border-y-1 border-y-custom-gray bg-transparent;
+}
+
+.leaderboard-stats-row {
+  @apply border-b-1 border-b-custom-gray;
+}
+
+.leaderboard-stats-cell {
+  @apply py-2 sm:py-3 px-4 sm:px-6 text-xs sm:text-sm;
+}
+
+.leaderboard-table-container {
+  @apply overflow-x-auto rounded-xl border-1 border-solid border-custom-gray   bg-custom-dark-blue;
+}
+
+.leaderboard-table {
+  @apply min-w-full bg-custom-dark-blue shadow-leaderboard;
+}
+
+.leaderboard-referral-container {
+  @apply market-card w-full max-w-xl mx-0 m-auto mt-5;
+}
+
+.leaderboard-referral-image-description {
+  @apply font-normal mt-2 text-sm sm:text-medium;
+}
+
+.leaderboard-share-container {
+  @apply flex flex-col sm:flex-row md:flex-row justify-between items-center mb-4 mt-2 border-1 border-solid border-custom-gray p-2 sm:p-2 rounded-lg;
+}
+
+.leaderboard-share-button {
+  @apply text-white text-xs pichi-button rounded-lg px-8 py-1 sm:px-10 sm:py-2;
+}
+
+.leaderboard-referral-history-table-container {
+  @apply overflow-x-auto rounded-xl border-2 border-solid border-custom-gray ;
+}
+
+.leaderboard-referral-history-table {
+  @apply min-w-full   overflow-hidden ;
+}
+
+.leaderboard-referral-points-container {
+  @apply  flex flex-col justify-center pichi-card;
+}
+
+.leaderboard-referral-point-input {
+  @apply font-medium bg-text-gradient bg-clip-text text-transparent;
+}
+
+.leaderboard-referral-table-column {
+  @apply py-2 sm:py-4 px-4 sm:px-6 text-white text-left font-medium text-xs sm:text-sm bg-transparent border-y-2 border-y-custom-gray;
+}
+
+.leaderboard-referral-address-cell {
+  @apply py-2 sm:py-3 px-4 sm:px-6 text-xs sm:text-sm md:text-sm lg:text-sm
+}
+
+.leaderboard-referral-history-row {
+  @apply border-b-1 border-b-custom-gray;
+}
+
+.leaderboard-referral-header {
+  @apply flex justify-between items-center p-4 sm:p-8;
+}
+
+.leaderboard-referral-image-container {
+  @apply py-4 sm:py-6 px-4 sm:px-8
+}
+
+.toasts-container {
+  background: linear-gradient(266.78deg, #4F2C31 -4.5%, #322224 87.19%);
+  border: 1px solid #584151;
+  color: #FFF9F8;
+  padding: 0.75rem 1rem;
+}
+
+
+.deposit-points-indicator{
+  border-radius:4px;
+  border: 0.5px solid #F39983;
+}
+
+.icon-container {
+  border-radius: 100%;
+  border: 1.457px solid rgba(72, 55, 67, 0.70);
+  background: linear-gradient(222deg, rgba(10, 11, 18, 0.60) 52.21%, rgba(37, 24, 25, 0.60) 80.46%);
+  box-shadow: 0px 5.827px 18.939px 0px rgba(39, 28, 32, 0.77) inset;
+}
