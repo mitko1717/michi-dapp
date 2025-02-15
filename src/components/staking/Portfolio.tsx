@@ -1,59 +1,57 @@
-import React, {useEffect} from "react";
+import React, { useEffect, useState } from "react";
 import {Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, Button, Spinner} from "@nextui-org/react";
-import {useSelector} from "react-redux";
-import {AppState} from "../../store";
 import Moment from "react-moment";
 import {useAccount, useReadContract, useWriteContract} from "wagmi";
 import {StakingAbi, StakingContractAddress, StakingLPAbi, StakingLPAddress} from "../../config/staking.config";
-import {formatEther, parseEther} from "viem";
+import {formatEther} from "viem";
 import {Token} from "../../types/token";
 import {stakingTokens} from "./Stake";
 import {formatBalance, weiToEth} from "../../utils/formatters";
 import {WalletClientError} from "../../types/errors";
 import {toast} from "sonner";
+import { useSelector } from "react-redux";
+import { AppState } from "../../store";
 
 const Portfolio = () => {
     const {address} = useAccount();
+    const user = useSelector((state: AppState) => state.user);
     const {writeContractAsync, isPending, data: generationData} = useWriteContract();
-    const [loading, setLoading] = React.useState(false);
+    const [loading, setLoading] = useState(false);
 
-    const {data: stakingCooldown} = useReadContract({
+    const {data: stakingCooldown, error: cooldownError, refetch: refetchCooldown} = useReadContract({
         address: StakingContractAddress,
         abi: StakingAbi,
         functionName: "getCooldownEnd",
-        args: [
-            address
-        ]
+        args: [address]
     });
 
-    const {data: balance} = useReadContract({
+    const { data: balance, error: balanceError, refetch: refetchBalance} = useReadContract({
         address: StakingContractAddress,
         abi: StakingAbi,
         functionName: "getAmountStaked",
-        args: [
-            address
-        ]
+        args: [address],
     });
-
-    const {data: balance2} = useReadContract({
+    
+    const { data: balance2, error: balance2Error, refetch: refetchBalance2 } = useReadContract({
         address: StakingLPAddress,
         abi: StakingLPAbi,
         functionName: "userToPoolInfo",
-        args: [
-            0,
-            address
-        ]
+        args: [0, address],
     });
-
-    const {data: pendingRewards} = useReadContract({
+    
+    const { data: pendingRewards, error: pendingRewardsError, refetch: refetchPendingRewards } = useReadContract({
         address: StakingLPAddress,
         abi: StakingLPAbi,
         functionName: "pendingRewards",
-        args: [
-            address,
-            0
-        ]
+        args: [address, 0],
     });
+
+    useEffect(() => {
+        refetchCooldown();
+        refetchBalance();
+        refetchBalance2();
+        refetchPendingRewards();
+    }, [user.stakeOrUnstakeTriggered])
 
     const harvest = async () => {
         try {

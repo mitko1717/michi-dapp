@@ -1,4 +1,5 @@
 import React, {useEffect, useMemo} from "react";
+import {triggerStakeOrUnstake} from "../../features/user/userSlice";
 import {Button, Input, Select, SelectItem, Spinner} from "@nextui-org/react";
 import {useAccount, useReadContract, useSwitchChain, useWriteContract} from "wagmi";
 import {formatEther, parseEther} from "viem";
@@ -9,8 +10,10 @@ import Moment from "react-moment";
 import {StakingToken, stakingTokens} from "./Stake";
 import {getActualBalance} from "../../utils/helpers";
 import {PichiTokenAddress} from "../../config/token.config";
+import { useDispatch } from "react-redux";
 
 const Unstake = () => {
+    const dispatch = useDispatch();
     const [currentToken, setCurrentToken] = React.useState<StakingToken>();
     const [input, setInput] = React.useState<String>();
     const {address} = useAccount();
@@ -119,6 +122,8 @@ const Unstake = () => {
             const e = err as WalletClientError;
             toast.error(e?.shortMessage);
             console.error(e);
+        } finally {
+            dispatch(triggerStakeOrUnstake())
         }
         setLoading(false);
     };

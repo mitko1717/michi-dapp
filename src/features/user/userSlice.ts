@@ -23,6 +23,7 @@ export interface UserState {
     receivedOffersStatus: "idle" | "loading" | "failed";
     listingsStatus: "idle" | "loading" | "failed";
     error: string | null;
+    stakeOrUnstakeTriggered: number
 }
 
 const initialState: UserState = {
@@ -40,6 +41,7 @@ const initialState: UserState = {
     receivedOffersStatus: "idle",
     listingsStatus: "idle",
     error: null,
+    stakeOrUnstakeTriggered: Date.now()
 };
 
 export const getUserInfo = createAsyncThunk(
@@ -100,6 +102,9 @@ export const userSlice = createSlice({
                 state.data.redTokens = action.payload.redTokens;
                 state.data.blueTokens = action.payload.blueTokens;
             }
+        },
+        triggerStakeOrUnstake: (state) => {
+            state.stakeOrUnstakeTriggered = Date.now()
         },
     },
     extraReducers: (builder) => {
@@ -164,7 +169,8 @@ export const {
     authorizeBeta,
     getTheme,
     setTheme,
-    setTokens
+    setTokens,
+    triggerStakeOrUnstake
 } = userSlice.actions;
 
 export const selectUser = (state: AppState) => state.user;

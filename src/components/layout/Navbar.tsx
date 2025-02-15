@@ -46,38 +46,38 @@ export default function nav() {
                         <img src="/logo.svg" className="h-8 mb-1.5" alt="logo"/>
                     </Link>
                 </NavbarItem>
-                <NavbarItem isActive={WALLETS === pathname}>
+                {/* <NavbarItem isActive={WALLETS === pathname}>
                     <Link color="foreground" href={WALLETS}>
                         My Wallets
                     </Link>
-                </NavbarItem>
-                <NavbarItem isActive={MARKET === pathname}>
+                </NavbarItem> */}
+                {/* <NavbarItem isActive={MARKET === pathname}>
                     <Link href={MARKET} aria-current="page">
                         Marketplace
                     </Link>
-                </NavbarItem>
-                {chainId != ChainId.MANTLE &&
+                </NavbarItem> */}
+                {/* {chainId != ChainId.MANTLE &&
                     <NavbarItem isActive={PROFILE === pathname}>
                         <Link href={PROFILE} aria-current="page">
                             Profile
                         </Link>
                     </NavbarItem>
-                }
+                } */}
                 <NavbarItem isActive={STAKE === pathname}>
                     <Link href={STAKE} aria-current="page">
                         Stake
                     </Link>
                 </NavbarItem>
-                <NavbarItem isActive={CLAIM === pathname}>
+                {/* <NavbarItem isActive={CLAIM === pathname}>
                     <Link href={CLAIM} aria-current="page">
                         Claim
                     </Link>
-                </NavbarItem>
-                <NavbarItem isActive={LEADERBOARD === pathname}>
+                </NavbarItem> */}
+                {/* <NavbarItem isActive={LEADERBOARD === pathname}>
                     <Link href={LEADERBOARD} aria-current="page">
                         Pichi Points
                     </Link>
-                </NavbarItem>
+                </NavbarItem> */}
                 {address && <NavbarItem>
                     <div
                         className="flex flex-row justify-center items-center mr-4 border-2 border-primary bg-black-100 bg-opacity-50 rounded-lg pr-4 pl-2">

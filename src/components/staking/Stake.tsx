@@ -1,4 +1,5 @@
 import React, {useEffect, useMemo} from "react";
+import {triggerStakeOrUnstake} from "../../features/user/userSlice";
 import {Button, Input, Select, SelectItem, Spinner} from "@nextui-org/react";
 import {getActualBalance} from "../../utils/helpers";
 import {MaxUint256, Token} from "../../types/token";
@@ -18,6 +19,7 @@ import {DefaultTokenABI} from "../../abis/tokens";
 import {WalletClientError} from "../../types/errors";
 import {toast} from "sonner";
 import axios from "axios";
+import { useDispatch } from "react-redux";
 
 export interface StakingToken extends Token {
     stakingAddress: string;
@@ -51,6 +53,7 @@ const Stake = () => {
     const [currentToken, setCurrentToken] = React.useState<StakingToken>();
     const [input, setInput] = React.useState<String>();
     const {address} = useAccount();
+    const dispatch = useDispatch();
     const {writeContractAsync, isPending, data: generationData} = useWriteContract();
     const [loading, setLoading] = React.useState(false);
     const chainId = useChainId();
@@ -148,6 +151,8 @@ const Stake = () => {
             const e = err as WalletClientError;
             toast.error(e?.shortMessage);
             console.error(e);
+        } finally {
+            dispatch(triggerStakeOrUnstake())
         }
         setLoading(false);
     };
