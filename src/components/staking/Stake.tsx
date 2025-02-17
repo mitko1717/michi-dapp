@@ -19,7 +19,8 @@ import {DefaultTokenABI} from "../../abis/tokens";
 import {WalletClientError} from "../../types/errors";
 import {toast} from "sonner";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { AppState } from "../../store";
 
 export interface StakingToken extends Token {
     stakingAddress: string;
@@ -50,10 +51,11 @@ export let stakingTokens: StakingToken[] = [
 ];
 
 const Stake = () => {
+    const user = useSelector((state: AppState) => state.user);
+    const dispatch = useDispatch();
     const [currentToken, setCurrentToken] = React.useState<StakingToken>();
     const [input, setInput] = React.useState<String>();
     const {address} = useAccount();
-    const dispatch = useDispatch();
     const {writeContractAsync, isPending, data: generationData} = useWriteContract();
     const [loading, setLoading] = React.useState(false);
     const chainId = useChainId();
@@ -101,6 +103,10 @@ const Stake = () => {
             setCurrentToken(_token as StakingToken);
         }
     }, [balance]);
+
+    useEffect(() => {
+        refetch()
+    }, [user.stakeOrUnstakeTriggered])
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;

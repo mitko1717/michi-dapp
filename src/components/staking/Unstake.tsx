@@ -10,9 +10,11 @@ import Moment from "react-moment";
 import {StakingToken, stakingTokens} from "./Stake";
 import {getActualBalance} from "../../utils/helpers";
 import {PichiTokenAddress} from "../../config/token.config";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { AppState } from "../../store";
 
 const Unstake = () => {
+    const user = useSelector((state: AppState) => state.user);
     const dispatch = useDispatch();
     const [currentToken, setCurrentToken] = React.useState<StakingToken>();
     const [input, setInput] = React.useState<String>();
@@ -43,6 +45,10 @@ const Unstake = () => {
             address
         ]
     });
+
+    useEffect(() => {
+        refetch()
+    }, [user.stakeOrUnstakeTriggered])
 
     const {data: balance2} = useReadContract({
         address: StakingLPAddress,
