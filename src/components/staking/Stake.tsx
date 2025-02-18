@@ -67,15 +67,10 @@ const Stake = () => {
         setApy();
     }, []);
 
-    useEffect(() => {
-        console.log({currentToken, PichiTokenAddress, currentApy});
-    }, [currentToken, PichiTokenAddress, currentApy]);
-
     const setApy = async () => {
         setApyLoading(true);
         const response = await axios.get(`${process.env.NEXT_PUBLIC_HOST}v1/tokens/apy/0x1388/0`);
         const {apy} = response.data;
-        console.log({apy});
         setCurrentApy(apy);
         setApyLoading(false);
     };
