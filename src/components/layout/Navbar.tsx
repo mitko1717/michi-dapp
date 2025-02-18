@@ -78,13 +78,13 @@ export default function nav() {
                         Pichi Points
                     </Link>
                 </NavbarItem> */}
-                {address && <NavbarItem>
+                {/* {address && <NavbarItem>
                     <div
                         className="flex flex-row justify-center items-center mr-4 border-2 border-primary bg-black-100 bg-opacity-50 rounded-lg pr-4 pl-2">
                         <img src="/logo.png" alt="logo" className="w-4 h-4 mr-2"/>
                         <span>{formatBalance(michiPoints)}</span>
                     </div>
-                </NavbarItem>}
+                </NavbarItem>} */}
             </NavbarContent>
             <NavbarContent justify="end">
                 <NavbarItem onClick={() => track("Wallet Connection Initiated")}>
